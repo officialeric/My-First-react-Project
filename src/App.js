@@ -2,6 +2,7 @@ import './index.css';
 import Employee from './components/Employee';
 import { useState } from 'react';
 import {v4 as uuidv4} from 'uuid';
+import AddEmployee from './components/AddEmployee';
 
 function App() {
 const [Employees,setEmployees] = useState(
@@ -42,7 +43,15 @@ const [Employees,setEmployees] = useState(
 function updateEmployee(id , newName , newPosition){
   const updateEmployees = Employees.map((employee)=>{
     if(id == employee.id){
-      return ( ...employee , name: newName, position: newPosition );
+      return ( {img : employee.img, name: newName, position: newPosition ,employee});
+      /*
+            return ( ...employee, img : employee.img, name: newName, position: newPosition );
+            
+            it once was as appear above , The error came which says "The rest element must be the last element"
+            i solved that by shifting "...employee" to the last element then i enclosed all code within the return with curl braces as appear
+            above this comment section.
+       */
+      
     }
 
     return employee;
@@ -50,11 +59,22 @@ function updateEmployee(id , newName , newPosition){
   setEmployees(updateEmployees);
 }
 
+function newEmployee(name,position,img){
+   const newEmployee = {
+    id : uuidv4(),
+    name : name ,
+    position : position,
+    img : img ,
+   }
+     setEmployees([...Employees , newEmployee]);
+}
   return (
+    <>
     <div className="flex justify-center flex-wrap mt-8">
        {Employees.map((employee)=>{
       
       return (
+       
         <Employee 
             key = {employee.id}
             id = {employee.id}
@@ -66,6 +86,8 @@ function updateEmployee(id , newName , newPosition){
       )
        })};
     </div>
+    <AddEmployee newEmployee = {newEmployee}/>
+    </>
   );
 }
 
