@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import {v4 as uuidv4} from 'uuid';
+import AllUser from "./AllUser";
 
 
-function AddUser(props){
-    const [name,setName] = useState('');
-    const [password,setPassword] = useState('');
+function EditUser(props){
+    const [name,setName] = useState(props.name);
+    const [password,setPassword] = useState(props.password);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -14,13 +14,14 @@ function AddUser(props){
 
     return (
         <>
-        <div className="flex justify-end">
+        <div className="">
             <div></div>
             <div>
-             <button className=' m-4 shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded'
-                     onClick={handleShow}>
-                               + Add User
-              </button>
+            <button className='shadow bg-slate-500 hover:bg-slate-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded '
+                    onClick={handleShow}>
+                                Edit
+             </button>
+    
               </div>
         </div>
               <Modal
@@ -30,7 +31,7 @@ function AddUser(props){
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add User</Modal.Title>
+          <Modal.Title>Edit User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <div className="m-2 py-8 px-8 max-w-sm  bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
@@ -38,10 +39,8 @@ function AddUser(props){
            id="addUser"
            onSubmit={(e)=>{
             e.preventDefault();
-            console.log(props.datas);
-            props.appendForm(uuidv4(),name,password);
-          }}>
-                
+            props.UpdateUser(props.id,name,password);  
+          }}>      
         <input type='text' 
                placeholder='Your Name'
                name='name' 
@@ -80,4 +79,4 @@ function AddUser(props){
         </>
     );
 }
-export default AddUser;
+export default EditUser;
