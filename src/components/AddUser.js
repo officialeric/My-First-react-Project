@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect , useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import {v4 as uuidv4} from 'uuid';
@@ -8,6 +8,12 @@ function AddUser(props){
     const [name,setName] = useState('');
     const [password,setPassword] = useState('');
     const [show, setShow] = useState(false);
+
+
+    useEffect(()=>{
+        console.log('data :',name);
+    });
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
