@@ -1,3 +1,7 @@
 export default function Customers(){
-    return <h1>Hello Customers</h1>
+    return ( 
+        <div className='my-8 mx-auto max-w-7xl flex justify-center'>
+          <h1>Hello Customers</h1>
+        </div>
+          );
 }

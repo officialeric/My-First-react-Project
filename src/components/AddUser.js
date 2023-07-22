@@ -10,11 +10,6 @@ function AddUser(props){
     const [show, setShow] = useState(false);
 
 
-    useEffect(()=>{
-        console.log('data :',name);
-    });
-
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
